@@ -3,44 +3,42 @@ import java.util.Random;
 
 public class Text 
 {
-	
-	ArrayList<String> text = new ArrayList();
-	Random random = new Random();
-	
+	private ArrayList<String> text = new ArrayList<String>();
+	private Random random = new Random();
 	
 	public Text()
 	{
 		setTextArray();
 	}
 	
+	private String getRandomString()
+	{
+		char[] letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','q','r','s','t','u','v','w','x','y','z'};
+		int random_num = this.random.nextInt(6) + 2;
+		String random_string = "";
+		for(int i = 0; i < random_num; i++) 	
+		{
+			int num = this.random.nextInt(25);
+			random_string = random_string + letters[num];
+		}
+		return random_string + " ";
+	}
 	
 	private void setTextArray()
 	{
-		for(int i = 0; i < 15; i++)
+		for(int i = 0; i< 15; i++)
 		{
-			this.text.add(getWord());
+			this.text.add(getRandomString());
 		}
 	}
 	
-	private String getWord() 
+	@Override public String toString()
 	{
-		char[] letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};	
-		String word = ""; 
-		
-		int random_num = this.random.nextInt(7) + 2;
-		for(int i = 0; i < random_num; i++) 
+		String string = "";
+		for(int i = 0; i < this.text.size(); i ++)
 		{
-			int num = this.random.nextInt(26);
-			word = word + letters[num];
+			string = string + this.text.get(i);
 		}
-		return word;
+		return string;
 	}
-
-	
-	public ArrayList<String> getText()
-	{
-		return this.text;
-	}
-	
-	
 }
