@@ -1,32 +1,19 @@
-import java.awt.Color;
-import javax.swing.JFrame;
-
 public class TypyingProgram 
 {
-	
-	private JFrame window;
+	private char current_char; 
+	private int current_index; 
+	private TypyingWindow window;
 	
 	
 	public TypyingProgram()
 	{
-		this.window = new JFrame();
-		setWindow();
+		this.window = new TypyingWindow();
 	}
 	
 	
-	public void start()
+	public void runProgram()
 	{
-		this.window.setVisible(true);
+		this.window.runProgram();
 	}
-	
-	
-	private void setWindow()
-	{
-		this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.window.setLayout(null);
-		this.window.setSize(600, 500);
-		this.window.setBackground(Color.BLUE);
-	}
-	
-	
 }
+
