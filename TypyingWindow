@@ -20,17 +20,10 @@ public class TypyingWindow extends JFrame implements KeyListener
 	private JButton exit;
 	private JButton reset;
 	
-	private Text text;
-	private char current_char;
-	private int current_index;
-	
 	
 	public TypyingWindow()
 	{	
-		this.text = new Text();
-		this.current_index = 0;
-		this.current_char = this.text.getString().charAt(this.current_index);
-		
+	
 		//Setting up the header of the program 
 		this.header = new JLabel();
 		this.header.setText("Typying Program");
@@ -39,7 +32,6 @@ public class TypyingWindow extends JFrame implements KeyListener
 		
 		//Setting up textPanel
 		this.textPanel = new JPanel();
-		setUpTextPanel();
 		
 		//Setting up wmp label
 		this.wpm = new JLabel();
@@ -78,7 +70,7 @@ public class TypyingWindow extends JFrame implements KeyListener
 		this.mainWindow.add(this.reset);
 	}
 	
-	
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -94,7 +86,7 @@ public class TypyingWindow extends JFrame implements KeyListener
 	@Override
 	public void keyReleased(KeyEvent e) {
 		
-		isCorrectChar(e.getKeyChar());
+		//TODO Auto-generated method stub 
 	}
 	
 	public void runProgram()
@@ -103,10 +95,10 @@ public class TypyingWindow extends JFrame implements KeyListener
 	}
 	
 	
-	private void setUpTextPanel()
+	public void setUpTextPanel( Text t )
 	{
 		JTextArea textArea = new JTextArea();
-		textArea.setText(this.text.getString());
+		textArea.setText(t.getString());
 		textArea.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
 		textArea.setBackground(Color.decode("#343b35"));
 		textArea.setForeground(Color.WHITE);
@@ -117,22 +109,30 @@ public class TypyingWindow extends JFrame implements KeyListener
 		this.textPanel.setBackground(Color.decode("#343b35"));
 	}
 	
+	public void changeColor( int index, Text text )
+	{
+		// will change a color of the current char if the typed char is correct 
+	}
+	
+	public void showResult(int wpm, int accuracy)
+	{
+		// in the even the program has come to an end this method will show result 
+		this.wpm.setText("Your speed: " + wpm + " wpm ");
+		this.accuracy.setText("Your accuracy: " + accuracy + "% ");
+	}
+
+	
 	private void setWmpLabel()
 	{
-		this.wpm.setText("Your speed: " + 0 + " wpm ");
+		this.wpm.setText("Your speed: " + "TBD");
 		this.wpm.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		this.wpm.setBounds(30, 340, 200, 20);
+		this.wpm.setBounds(30, 340, 250, 20);
 	}
 	
 	private void setAccuracyLabel()
 	{
-		this.accuracy.setText("Your accuracy: " + 0 + "% ");
+		this.accuracy.setText("Your accuracy: " + "TBD");
 		this.accuracy.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		this.accuracy.setBounds(30, 385, 200, 20);
-	}
-	
-	private boolean isCorrectChar( char given_char ) {
-		
-		return true;
+		this.accuracy.setBounds(30, 385, 250, 20);
 	}
 }
