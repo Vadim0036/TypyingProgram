@@ -1,1 +1,101 @@
+import java.awt.Color;
+import java.awt.Font;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class TypyingWindow extends JFrame
+{
+	private JFrame mainWindow;
+	private JLabel header;
+	private JPanel textPanel;
+	private JLabel wpm;
+	private JLabel accuracy;
+	private JButton exit;
+	private JButton reset;
+	
+	
+	public TypyingWindow()
+	{	
+		//Setting up the header of the program 
+		this.header = new JLabel();
+		this.header.setText("Typying Program");
+		this.header.setBounds(30,-110, 350,300);;
+		this.header.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
+		
+		//Setting up textPanel
+		this.textPanel = new JPanel();
+		setUpTextPanel();
+		
+		//Setting up wmp label
+		this.wpm = new JLabel();
+		setWmpLabel();
+		
+		//Setting up accuracy label
+		this.accuracy = new JLabel();
+		setAccuracyLabel();
+		
+		//Setting up exit button
+		this.exit = new JButton();
+		this.exit.setText("EXIT");
+		this.exit.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
+		this.exit.setBounds(30, 425, 200, 50);
+		
+		
+		//Setting up reset button
+		this.reset = new JButton();
+		this.reset.setText("RESET");
+		this.reset.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
+		this.reset.setBounds(355, 425, 200, 50);
+				
+		// Setting up JFrame 
+		this.mainWindow = new JFrame();
+		this.mainWindow.setLayout(null);
+		this.mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.mainWindow.setSize(600,550);
+		this.mainWindow.add(header);
+		this.mainWindow.add(this.textPanel);
+		this.mainWindow.add(this.wpm);
+		this.mainWindow.add(this.accuracy);
+		this.mainWindow.add(this.exit);
+		this.mainWindow.add(this.reset);
+	}
+	
+	public void runProgram()
+	{
+		this.mainWindow.setVisible(true);
+	}
+	
+	private void setUpTextPanel()
+	{
+		Text text = new Text();
+		JTextArea textArea = new JTextArea();
+		textArea.setText(text.getString());
+		textArea.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
+		textArea.setBackground(Color.decode("#343b35"));
+		textArea.setForeground(Color.WHITE);
+		textArea.setEditable(false);
+		
+		this.textPanel.setBounds(30, 110, 530, 210);
+		this.textPanel.add(textArea);
+		this.textPanel.setBackground(Color.decode("#343b35"));
+	}
+	
+	private void setWmpLabel()
+	{
+		this.wpm.setText("Your speed: " + 0 + " wpm ");
+		this.wpm.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		this.wpm.setBounds(30, 340, 200, 20);
+	}
+	
+	private void setAccuracyLabel()
+	{
+		this.accuracy.setText("Your accuracy: " + 0 + "% ");
+		this.accuracy.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		this.accuracy.setBounds(30, 385, 200, 20);
+	}
+}
