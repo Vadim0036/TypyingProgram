@@ -1,14 +1,16 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
-public class TypyingWindow extends JFrame
+
+public class TypyingWindow extends JFrame implements KeyListener
 {
 	private JFrame mainWindow;
 	private JLabel header;
@@ -18,9 +20,17 @@ public class TypyingWindow extends JFrame
 	private JButton exit;
 	private JButton reset;
 	
+	private Text text;
+	private char current_char;
+	private int current_index;
+	
 	
 	public TypyingWindow()
 	{	
+		this.text = new Text();
+		this.current_index = 0;
+		this.current_char = this.text.getString().charAt(this.current_index);
+		
 		//Setting up the header of the program 
 		this.header = new JLabel();
 		this.header.setText("Typying Program");
@@ -57,6 +67,9 @@ public class TypyingWindow extends JFrame
 		this.mainWindow.setLayout(null);
 		this.mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		this.mainWindow.setSize(600,550);
+		this.mainWindow.addKeyListener(this);
+		
+		// Adding components to frame
 		this.mainWindow.add(header);
 		this.mainWindow.add(this.textPanel);
 		this.mainWindow.add(this.wpm);
@@ -65,16 +78,35 @@ public class TypyingWindow extends JFrame
 		this.mainWindow.add(this.reset);
 	}
 	
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
+		isCorrectChar(e.getKeyChar());
+	}
+	
 	public void runProgram()
 	{
 		this.mainWindow.setVisible(true);
 	}
 	
+	
 	private void setUpTextPanel()
 	{
-		Text text = new Text();
 		JTextArea textArea = new JTextArea();
-		textArea.setText(text.getString());
+		textArea.setText(this.text.getString());
 		textArea.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
 		textArea.setBackground(Color.decode("#343b35"));
 		textArea.setForeground(Color.WHITE);
@@ -97,5 +129,10 @@ public class TypyingWindow extends JFrame
 		this.accuracy.setText("Your accuracy: " + 0 + "% ");
 		this.accuracy.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		this.accuracy.setBounds(30, 385, 200, 20);
+	}
+	
+	private boolean isCorrectChar( char given_char ) {
+		
+		return true;
 	}
 }
