@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -26,19 +27,24 @@ public class Text
 	
 	private void setTextArray()
 	{
-		for(int i = 0; i< 15; i++)
+		for(int i = 0; i< 30; i++)
 		{
 			this.text.add(getRandomString());
 		}
 	}
 	
-	@Override public String toString()
+	public String getString() 
 	{
-		String string = "";
-		for(int i = 0; i < this.text.size(); i ++)
-		{
-			string = string + this.text.get(i);
-		}
-		return string;
+	    StringBuilder string = new StringBuilder();
+	    int wordCount = 0; 
+	    for (int i = 0; i < this.text.size(); i++) 
+	    {   
+	        string.append(this.text.get(i));
+	        wordCount++;
+	        
+	        if (wordCount % 6 == 0) string.append("\n"); 
+	        else string.append(" ");     
+	    }
+	    return string.toString();
 	}
 }
