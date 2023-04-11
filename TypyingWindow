@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 
-public class TypyingWindow extends JFrame implements KeyListener
+public class TypingWindow extends JFrame implements KeyListener
 {
 	private JFrame mainWindow;
 	private JLabel header;
@@ -19,11 +19,15 @@ public class TypyingWindow extends JFrame implements KeyListener
 	private JLabel accuracy;
 	private JButton exit;
 	private JButton reset;
+	private JTextArea textArea;
+	
+	private TypingProgram program;
 	
 	
-	public TypyingWindow()
+	public TypingWindow( TypingProgram program )
 	{	
-	
+		this.program = program;
+		
 		//Setting up the header of the program 
 		this.header = new JLabel();
 		this.header.setText("Typying Program");
@@ -59,7 +63,9 @@ public class TypyingWindow extends JFrame implements KeyListener
 		this.mainWindow.setLayout(null);
 		this.mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		this.mainWindow.setSize(600,550);
-		this.mainWindow.addKeyListener(this);
+		
+		// Setting up textArea
+		this.textArea = new JTextArea();
 		
 		// Adding components to frame
 		this.mainWindow.add(header);
@@ -69,58 +75,6 @@ public class TypyingWindow extends JFrame implements KeyListener
 		this.mainWindow.add(this.exit);
 		this.mainWindow.add(this.reset);
 	}
-	
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		
-		//TODO Auto-generated method stub 
-	}
-	
-	public void runProgram()
-	{
-		this.mainWindow.setVisible(true);
-	}
-	
-	
-	public void setUpTextPanel( Text t )
-	{
-		JTextArea textArea = new JTextArea();
-		textArea.setText(t.getString());
-		textArea.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
-		textArea.setBackground(Color.decode("#343b35"));
-		textArea.setForeground(Color.WHITE);
-		textArea.setEditable(false);
-		
-		this.textPanel.setBounds(30, 110, 530, 210);
-		this.textPanel.add(textArea);
-		this.textPanel.setBackground(Color.decode("#343b35"));
-	}
-	
-	public void changeColor( int index, Text text )
-	{
-		// will change a color of the current char if the typed char is correct 
-	}
-	
-	public void showResult(int wpm, int accuracy)
-	{
-		// in the even the program has come to an end this method will show result 
-		this.wpm.setText("Your speed: " + wpm + " wpm ");
-		this.accuracy.setText("Your accuracy: " + accuracy + "% ");
-	}
-
 	
 	private void setWmpLabel()
 	{
@@ -134,5 +88,56 @@ public class TypyingWindow extends JFrame implements KeyListener
 		this.accuracy.setText("Your accuracy: " + "TBD");
 		this.accuracy.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		this.accuracy.setBounds(30, 385, 250, 20);
+	}
+	
+	public void setUpTextPanel( Text t )
+	{
+		this.textArea.setText(t.getString());
+		this.textArea.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
+		this.textArea.setBackground(Color.decode("#343b35"));
+		this.textArea.setForeground(Color.WHITE);
+		this.textArea.setEditable(false);
+		this.textArea.addKeyListener( this );
+		this.textArea.setFocusable(true);
+		
+		this.textPanel.setBounds(30, 110, 530, 210);
+		this.textPanel.add(textArea);
+		this.textPanel.setBackground(Color.decode("#343b35"));
+	}
+	
+	public void runProgram()
+	{
+		this.mainWindow.setVisible(true);
+		this.textPanel.requestFocus();
+	}
+	
+	
+	@Override public void keyTyped(KeyEvent e) {
+		//System.out.println( "KEY TYPED" );
+		
+		char key = e.getKeyChar();
+		this.program.checkInput( key );
+	}
+
+	@Override public void keyPressed(KeyEvent e) {
+		//System.out.println( "KEY PRESSED" );
+		
+	}
+
+	@Override public void keyReleased(KeyEvent e) {
+		//System.out.println( "KEY RELEASED" );
+	}
+	
+	
+	public void changeColor( int index, Text text )
+	{
+		// will change a color of the current char if the typed char is correct 
+	}
+	
+	public void showResult(int wpm, int accuracy)
+	{
+		// in the even the program has come to an end this method will show result 
+		this.wpm.setText("Your speed: " + wpm + " wpm ");
+		this.accuracy.setText("Your accuracy: " + accuracy + "% ");
 	}
 }
