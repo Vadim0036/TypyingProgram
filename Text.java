@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -22,12 +21,12 @@ public class Text
 			int num = this.random.nextInt(25);
 			random_string = random_string + letters[num];
 		}
-		return random_string + " ";
+		return random_string + "";
 	}
 	
 	private void setTextArray()
 	{
-		for(int i = 0; i< 30; i++)
+		for(int i = 0; i< 3; i++)
 		{
 			this.text.add(getRandomString());
 		}
@@ -46,5 +45,18 @@ public class Text
 	        else string.append(" ");     
 	    }
 	    return string.toString();
+	}
+	
+	public int getNumberOfChar()
+	{
+		int count = 0; 
+		for(int i = 0; i < this.text.size(); i ++ )
+		{
+			for(int j = 0; j < this.text.get(i).length(); j++)
+			{
+				count ++;
+			}
+		}
+		return count + 2;
 	}
 }
