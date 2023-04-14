@@ -1,17 +1,18 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-public class TypyingPanel extends JPanel {
+public class TypingPanel extends JPanel {
 	
 	private Text typyingText;
 	private Color normalColor;
 	private Color correctColor;
-	private TypyingProgram program;
 	
-	public TypyingPanel(TypyingProgram program)
+	
+	public TypingPanel()
 	{
 		this.setLayout(null);
 		this.setBounds(45,90, 500, 230);
@@ -21,11 +22,9 @@ public class TypyingPanel extends JPanel {
 		
 		this.normalColor = new Color(255,255,255);
 		this.correctColor = new Color(0,255,0);
-		
-		this.program = program;
 	}
 	
-	// ?????????? What this method does ?
+	
 	public void setText(Text text)
 	{
 		this.typyingText = text;
@@ -35,7 +34,24 @@ public class TypyingPanel extends JPanel {
 	{
 		super.paintComponent(g);
 		g.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
-		g.drawString("Hello World", 20, 20);
+		FontMetrics fm = g.getFontMetrics();
+		
+		int text_spacing = 5;
+		int text_h = fm.getHeight();
+		int x_pos = 5;
+		int y_pos = text_h;
+		
+		for (int i = 0; i < this.typyingText.getLength(); i++)
+		{
+			char character = this.typyingText.getTypyingTextCharAt(i);
+			if ( this.typyingText.isCharCorrect( i ) )
+				g.setColor( this.correctColor );
+			else 
+				g.setColor( this.normalColor );
+			g.drawString( "" + character, x_pos, y_pos );
+			
+			int char_w = fm.stringWidth( "" + character );
+			x_pos += char_w + text_spacing;
+		}
 	}
-	
 }
