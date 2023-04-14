@@ -60,4 +60,9 @@ public class Text
 			this.typyingText = this.typyingText + getRandomWord() + " ";
 		}
 	}
+	
+	public void addChar(char usersInput) 
+	{
+		this.usersInput = this.usersInput + usersInput;
+	}
 }
