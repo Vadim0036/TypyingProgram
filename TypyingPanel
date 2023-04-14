@@ -1,0 +1,41 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+public class TypyingPanel extends JPanel {
+	
+	private Text typyingText;
+	private Color normalColor;
+	private Color correctColor;
+	private TypyingProgram program;
+	
+	public TypyingPanel(TypyingProgram program)
+	{
+		this.setLayout(null);
+		this.setBounds(45,90, 500, 230);
+		this.setBackground(new Color(75, 82, 77));
+		this.setOpaque(true);
+		this.setFocusable(true);
+		
+		this.normalColor = new Color(255,255,255);
+		this.correctColor = new Color(0,255,0);
+		
+		this.program = program;
+	}
+	
+	// ?????????? What this method does ?
+	public void setText(Text text)
+	{
+		this.typyingText = text;
+	}
+	
+	@Override protected void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		g.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
+		g.drawString("Hello World", 20, 20);
+	}
+	
+}
