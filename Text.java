@@ -11,7 +11,6 @@ public class Text
 	{
 		this.random = new Random();
 		this.typyingText = "";
-
 		setTypyingText();
 	}
 	
@@ -19,10 +18,20 @@ public class Text
 	{
 		return this.typyingText;
 	}
+
+	public char getTypyingTextCharAt( int i )
+	{
+		return this.typyingText.charAt( i );
+	}
 	
 	public String getUsersInput() 
 	{
 		return this.usersInput;
+	}
+	
+	public int getLength()
+	{
+		return this.typyingText.length();
 	}
 	
 	private String getRandomWord()
@@ -55,7 +64,7 @@ public class Text
 	
 	private void setTypyingText()
 	{
-		for(int i = 0; i < 5; i++) 
+		for(int i = 0; i < 3; i++) 
 		{
 			this.typyingText = this.typyingText + getRandomWord() + " ";
 		}
@@ -64,5 +73,11 @@ public class Text
 	public void addChar(char usersInput) 
 	{
 		this.usersInput = this.usersInput + usersInput;
+	}
+	
+	public boolean isCharCorrect(int position)
+	{
+		if(this.typyingText.charAt(position) == this.usersInput.charAt(position)) return true;
+		else return false;
 	}
 }
