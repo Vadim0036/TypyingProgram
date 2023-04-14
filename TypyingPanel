@@ -1,0 +1,64 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+
+import javax.swing.JEditorPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+
+public class TypingPanel extends JPanel {
+	
+	private Text text;
+	private Color normalTextColor;
+	private Color correctTextColor;
+	private Color incorrectTextColor;
+
+	public TypingPanel()
+	{
+		this.setLayout(null);
+		this.setOpaque( true );
+		this.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
+		this.setBackground( new Color(52, 59, 53) );
+		this.setFocusable(true);
+		
+		this.normalTextColor = new Color(255, 255, 255);
+		this.correctTextColor = new Color(0, 255, 0);
+		this.incorrectTextColor = new Color(255, 0, 0);
+	}
+	
+	
+	public void setText( Text text )
+	{
+		this.text = text;
+	}
+	
+	@Override protected void paintComponent( Graphics g )
+	{
+		super.paintComponent( g );
+		
+		System.out.println( "PAINT TYPING PANEL" );
+		
+		String text = this.text.getText();
+		
+		if(this.text.isCorrectChar(given_char)) {
+			
+			
+			
+		}
+		
+		/*
+		for ( int i = 0; i < this.text.getText().length(); i++ )
+		{
+			if ( isCorrectChar() )
+				g.setColor( this.correctTextColor );
+				g.drawString("d", 10, 10);
+		} 
+		else {
+			g.setColor( this.incorrectTextColor );
+			g.drawString( "A", 10, 10 );
+		}
+		*/
+		
+	}
+}
