@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 
-public class TypyingWindow extends JFrame implements KeyListener
+public class TypingWindow extends JFrame implements KeyListener
 {
 	private JFrame mainWindow;
 	private JLabel header;
@@ -19,11 +19,15 @@ public class TypyingWindow extends JFrame implements KeyListener
 	private JButton exit;
 	private JButton reset;
 	
-	private TypyingPanel typyingPanel;
+	private TypingPanel typyingPanel;
+	
+	private TypingProgram program;
 	
 	
-	public TypyingWindow(TypyingProgram program)
+	public TypingWindow( TypingProgram program )
 	{	
+		this.program = program;
+		
 		//Setting up JFrame 
 		this.mainWindow = new JFrame();
 		this.mainWindow.setLayout(null);
@@ -31,8 +35,8 @@ public class TypyingWindow extends JFrame implements KeyListener
 		this.mainWindow.setSize(600,550);
 
 		//Creating typyingPanel
-		this.typyingPanel = new TypyingPanel(program);
-		this.addKeyListener(this);
+		this.typyingPanel = new TypingPanel();
+		this.typyingPanel.addKeyListener(this);
 		
 		
 		//Setting up the header of the program 
@@ -82,16 +86,19 @@ public class TypyingWindow extends JFrame implements KeyListener
 		this.typyingPanel.requestFocus();
 	}
 	
-	// ???????? What this method does ?
+
 	public void setText(Text text)
 	{
 		this.typyingPanel.setText(text);
+		this.typyingPanel.repaint();
 	}
 	
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
+		char c = e.getKeyChar();
+		this.program.checkInput( c );
 	}
 
 	@Override
