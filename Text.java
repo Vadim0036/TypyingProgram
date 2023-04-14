@@ -1,62 +1,63 @@
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Text 
 {
-	private ArrayList<String> text = new ArrayList<String>();
-	private Random random = new Random();
+	private Random random;
+	private String typyingText;
+	private String usersInput;
+	
 	
 	public Text()
 	{
-		setTextArray();
+		this.random = new Random();
+		this.typyingText = "";
+
+		setTypyingText();
 	}
 	
-	private String getRandomString()
+	public String getTypyingText()
 	{
-		char[] letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','q','r','s','t','u','v','w','x','y','z'};
-		int random_num = this.random.nextInt(6) + 2;
-		String random_string = "";
-		for(int i = 0; i < random_num; i++) 	
+		return this.typyingText;
+	}
+	
+	public String getUsersInput() 
+	{
+		return this.usersInput;
+	}
+	
+	private String getRandomWord()
+	{
+		String[] words = new String[] {
+				
+                "apple", "banana", "cherry", "date", "elderberry",
+                "fig", "grape", "kiwi", "lemon", "mango",
+                "orange", "pear", "quince", "raspberry", "strawberry",
+                "watermelon", "avocado", "blueberry", "coconut", "dragonfruit",
+                "guava", "jackfruit", "kiwifruit", "lychee", "mangosteen",
+                "nectarine", "papaya", "passion fruit", "pineapple", "pomegranate",
+                "apricot", "blackberry", "cantaloupe", "cucumber", "durian",
+                "grapefruit", "lime", "longan", "lychee", "melon",
+                "mulberry", "olive", "peach", "plum", "pumpkin",
+                "rambutan", "starfruit", "tangerine", "tomato", "ugli fruit",
+                "zucchini", "artichoke", "asparagus", "beetroot", "bell pepper",
+                "broccoli", "cabbage", "carrot", "cauliflower", "celery",
+                "chard", "chili pepper", "corn", "cucumber", "eggplant",
+                "garlic", "ginger", "kale", "leek", "lettuce",
+                "mushroom", "onion", "parsley", "pea", "potato",
+                "radish", "spinach", "squash", "sweet potato", "tomato",
+                "turnip", "watercress", "watermelon", "zucchini", "almond",
+                "cashew", "chestnut", "coconut", "hazelnut", "macadamia nut",
+                "peanut", "pecan", "pine nut", "pistachio", "walnut"
+                
+		};
+		return words[this.random.nextInt(95)];
+	}
+	
+	private void setTypyingText()
+	{
+		for(int i = 0; i < 5; i++) 
 		{
-			int num = this.random.nextInt(25);
-			random_string = random_string + letters[num];
+			this.typyingText = this.typyingText + getRandomWord() + " ";
 		}
-		return random_string + "";
-	}
-	
-	private void setTextArray()
-	{
-		for(int i = 0; i< 3; i++)
-		{
-			this.text.add(getRandomString());
-		}
-	}
-	
-	public String getString() 
-	{
-	    StringBuilder string = new StringBuilder();
-	    int wordCount = 0; 
-	    for (int i = 0; i < this.text.size(); i++) 
-	    {   
-	        string.append(this.text.get(i));
-	        wordCount++;
-	        
-	        if (wordCount % 6 == 0) string.append("\n"); 
-	        else string.append(" ");     
-	    }
-	    return string.toString();
-	}
-	
-	public int getNumberOfChar()
-	{
-		int count = 0; 
-		for(int i = 0; i < this.text.size(); i ++ )
-		{
-			for(int j = 0; j < this.text.get(i).length(); j++)
-			{
-				count ++;
-			}
-		}
-		return count + 2;
 	}
 }
