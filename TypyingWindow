@@ -20,8 +20,6 @@ public class TypyingWindow extends JFrame implements KeyListener
 	private JButton reset;
 	
 	private TypyingPanel typyingPanel;
-	private TypyingProgram typyingProgram;
-	
 	
 	
 	public TypyingWindow(TypyingProgram program)
@@ -31,12 +29,9 @@ public class TypyingWindow extends JFrame implements KeyListener
 		this.mainWindow.setLayout(null);
 		this.mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		this.mainWindow.setSize(600,550);
-		
-		//Setting up program 
-		this.typyingProgram = program;
-		
+
 		//Creating typyingPanel
-		this.typyingPanel = new TypyingPanel();
+		this.typyingPanel = new TypyingPanel(program);
 		this.addKeyListener(this);
 		
 		
@@ -50,7 +45,7 @@ public class TypyingWindow extends JFrame implements KeyListener
 		this.wpm = new JLabel();
 		this.wpm.setText("Your speed: " + 0 + " wpm ");
 		this.wpm.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		this.wpm.setBounds(30, 340, 200, 20);
+		this.wpm.setBounds(30, 340, 200, 20); 
 		
 		//Setting up accuracy label
 		this.accuracy = new JLabel();
