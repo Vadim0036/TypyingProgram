@@ -14,13 +14,12 @@ public class TypingWindow extends JFrame implements KeyListener
 {
 	private JFrame mainWindow;
 	private JLabel header;
-	private JPanel textPanel;
 	private JLabel wpm;
 	private JLabel accuracy;
 	private JButton exit;
 	private JButton reset;
-	private JTextArea textArea;
 	
+	private TypingPanel typingPanel;
 	private TypingProgram program;
 	
 	
@@ -28,14 +27,25 @@ public class TypingWindow extends JFrame implements KeyListener
 	{	
 		this.program = program;
 		
+		// Setting up JFrame 
+		int width = 600;
+		int height = 550;
+		this.mainWindow = new JFrame();
+		this.mainWindow.setLayout(null);
+		this.mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.mainWindow.setSize(width,height);	
+		
 		//Setting up the header of the program 
 		this.header = new JLabel();
 		this.header.setText("Typying Program");
-		this.header.setBounds(30,-110, 350,300);;
+		this.header.setBounds(0, 0, width, 100);
+		this.header.setHorizontalAlignment( JLabel.L );
 		this.header.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
 		
-		//Setting up textPanel
-		this.textPanel = new JPanel();
+		//Setting up Typing Panel
+		this.typingPanel = new TypingPanel();
+		this.typingPanel.setBounds(30, 110, 530, 210);
+		this.typingPanel.addKeyListener( this );
 		
 		//Setting up wmp label
 		this.wpm = new JLabel();
@@ -51,25 +61,16 @@ public class TypingWindow extends JFrame implements KeyListener
 		this.exit.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
 		this.exit.setBounds(30, 425, 200, 50);
 		
-		
 		//Setting up reset button
 		this.reset = new JButton();
 		this.reset.setText("RESET");
 		this.reset.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
 		this.reset.setBounds(355, 425, 200, 50);
 				
-		// Setting up JFrame 
-		this.mainWindow = new JFrame();
-		this.mainWindow.setLayout(null);
-		this.mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		this.mainWindow.setSize(600,550);
-		
-		// Setting up textArea
-		this.textArea = new JTextArea();
 		
 		// Adding components to frame
 		this.mainWindow.add(header);
-		this.mainWindow.add(this.textPanel);
+		this.mainWindow.add(this.typingPanel);
 		this.mainWindow.add(this.wpm);
 		this.mainWindow.add(this.accuracy);
 		this.mainWindow.add(this.exit);
@@ -90,33 +91,24 @@ public class TypingWindow extends JFrame implements KeyListener
 		this.accuracy.setBounds(30, 385, 250, 20);
 	}
 	
-	public void setUpTextPanel( Text t )
-	{
-		this.textArea.setText(t.getString());
-		this.textArea.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
-		this.textArea.setBackground(Color.decode("#343b35"));
-		this.textArea.setForeground(Color.WHITE);
-		this.textArea.setEditable(false);
-		this.textArea.addKeyListener( this );
-		this.textArea.setFocusable(true);
-		
-		this.textPanel.setBounds(30, 110, 530, 210);
-		this.textPanel.add(textArea);
-		this.textPanel.setBackground(Color.decode("#343b35"));
-	}
-	
 	public void runProgram()
 	{
 		this.mainWindow.setVisible(true);
-		this.textPanel.requestFocus();
+		this.typingPanel.requestFocus();
+	}
+	
+	public void setText( Text text )
+	{
+		this.typingPanel.setText( text );
 	}
 	
 	
 	@Override public void keyTyped(KeyEvent e) {
 		//System.out.println( "KEY TYPED" );
-		
 		char key = e.getKeyChar();
 		this.program.checkInput( key );
+		
+		System.out.println( "Hello" );
 	}
 
 	@Override public void keyPressed(KeyEvent e) {
@@ -126,18 +118,5 @@ public class TypingWindow extends JFrame implements KeyListener
 
 	@Override public void keyReleased(KeyEvent e) {
 		//System.out.println( "KEY RELEASED" );
-	}
-	
-	
-	public void changeColor( int index, Text text )
-	{
-		// will change a color of the current char if the typed char is correct 
-	}
-	
-	public void showResult(int wpm, int accuracy)
-	{
-		// in the even the program has come to an end this method will show result 
-		this.wpm.setText("Your speed: " + wpm + " wpm ");
-		this.accuracy.setText("Your accuracy: " + accuracy + "% ");
 	}
 }
