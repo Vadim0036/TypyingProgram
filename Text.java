@@ -36,6 +36,11 @@ public class Text
 		return this.typyingText.length();
 	}
 	
+	public int getLengthUserInput()
+	{
+		return this.usersInput.length();
+	}
+	
 	private String getRandomWord()
 	{
 		String[] words = new String[] {
@@ -66,7 +71,7 @@ public class Text
 	
 	private void setTypyingText()
 	{
-		for(int i = 0; i < 3; i++) 
+		for(int i = 0; i < 2; i++) 
 		{
 			this.typyingText = this.typyingText + getRandomWord() + " ";
 		}
@@ -77,8 +82,8 @@ public class Text
 		this.usersInput = this.usersInput + usersInput;
 	}
 	
-	public boolean isCharCorrect(int position) {
-		
+	public boolean isCharCorrect(int position) 
+	{
 		try {
 			if(this.usersInput.charAt(position) == this.typyingText.charAt(position)) return true;
 			else return false;
