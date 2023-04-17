@@ -1,0 +1,23 @@
+
+public class Timer {
+	
+	private double start_time;
+	private double stop_time;
+	
+	
+	public Timer()
+	{
+		start_time = 0;
+		stop_time = 0;
+	}
+	
+	public double startTimer()
+	{
+		return start_time = System.currentTimeMillis();
+	}
+	
+	public double stopTimer()
+	{
+		return System.currentTimeMillis();
+	}
+}
