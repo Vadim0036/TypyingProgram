@@ -1,9 +1,9 @@
 
-public class RunProgram {
-	
+public class RunProgram 
+{
 	public static void main(String[] args)
 	{
-		TypyingProgram myProgram = new TypyingProgram();
+		TypingProgram myProgram = new TypingProgram();
 		myProgram.runProgram();
 	}
 }
