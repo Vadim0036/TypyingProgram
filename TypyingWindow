@@ -93,6 +93,12 @@ public class TypingWindow extends JFrame implements KeyListener
 		this.typyingPanel.repaint();
 	}
 	
+	public void setResult(int speed, int accuracy)
+	{
+		this.wpm.setText("Your speed: " + speed + " wpm ");
+		this.accuracy.setText("Your accuracy: " + accuracy + "% ");
+	}
+	
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -111,3 +117,4 @@ public class TypingWindow extends JFrame implements KeyListener
 		//TODO
 	}
 }
+
