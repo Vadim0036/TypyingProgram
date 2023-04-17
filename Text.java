@@ -2,6 +2,7 @@ import java.util.Random;
 
 public class Text 
 {
+
 	private Random random;
 	private String typyingText;
 	private String usersInput;
@@ -11,6 +12,7 @@ public class Text
 	{
 		this.random = new Random();
 		this.typyingText = "";
+		this.usersInput = "";
 		setTypyingText();
 	}
 	
@@ -75,9 +77,14 @@ public class Text
 		this.usersInput = this.usersInput + usersInput;
 	}
 	
-	public boolean isCharCorrect(int position)
-	{
-		if(this.typyingText.charAt(position) == this.usersInput.charAt(position)) return true;
-		else return false;
+	public boolean isCharCorrect(int position) {
+		
+		try {
+			if(this.usersInput.charAt(position) == this.typyingText.charAt(position)) return true;
+			else return false;
+		} 
+		catch(NullPointerException | StringIndexOutOfBoundsException e){
+			return false;
+		}
 	}
 }
