@@ -33,6 +33,7 @@ public class Text
 	
 	public int getLength()
 	{
+	
 		return this.typyingText.length();
 	}
 	
