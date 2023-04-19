@@ -1,20 +1,19 @@
-import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 
-public class TypingWindow extends JFrame implements KeyListener
+public class TypingWindow extends JFrame implements KeyListener, ActionListener
 {
 	private JFrame mainWindow;
 	private JLabel header;
-	private JLabel wpm;
+	private JLabel cpm;
 	private JLabel accuracy;
 	private JButton exit;
 	private JButton reset;
@@ -46,36 +45,29 @@ public class TypingWindow extends JFrame implements KeyListener
 		this.header.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
 		
 		//Setting up word per minute label label
-		this.wpm = new JLabel();
-		this.wpm.setText("Your speed: " + 0 + " wpm ");
-		this.wpm.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		this.wpm.setBounds(30, 340, 200, 20); 
+		this.cpm = new JLabel();
+		this.cpm.setText("Your speed: " + 0 + " cpm ");
+		this.cpm.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		this.cpm.setBounds(30, 340, 250, 20); 
 		
 		//Setting up accuracy label
 		this.accuracy = new JLabel();
 		this.accuracy.setText("Your accuracy: " + 0 + "% ");
 		this.accuracy.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		this.accuracy.setBounds(30, 385, 200, 20);
+		this.accuracy.setBounds(30, 385, 250, 20);
 		
 		//Setting up exit button
 		this.exit = new JButton();
 		this.exit.setText("EXIT");
 		this.exit.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
-		this.exit.setBounds(30, 425, 200, 50);
-		
-		
-		//Setting up reset button
-		this.reset = new JButton();
-		this.reset.setText("RESET");
-		this.reset.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
-		this.reset.setBounds(355, 425, 200, 50);
+		this.exit.setBounds(30, 430, 200, 50);
+		this.exit.addActionListener(this);
 					
 		//Adding components to frame
 		this.mainWindow.add(header);
-		this.mainWindow.add(this.wpm);
+		this.mainWindow.add(this.cpm);
 		this.mainWindow.add(this.accuracy);
 		this.mainWindow.add(this.exit);
-		this.mainWindow.add(this.reset);
 		this.mainWindow.add(this.typyingPanel);
 	}
 	
@@ -93,16 +85,26 @@ public class TypingWindow extends JFrame implements KeyListener
 		this.typyingPanel.repaint();
 	}
 	
-	public void setResult(int speed, int accuracy)
+	public void setResult(int speed, double accuracy)
 	{
-		this.wpm.setText("Your speed: " + speed + " wpm ");
+		this.cpm.setText("Your speed: " + speed + " cpm ");
 		this.accuracy.setText("Your accuracy: " + accuracy + "% ");
 	}
 	
+	private void exitProgram()
+	{
+		this.mainWindow.dispose();
+	}
 	
 	@Override
-	public void keyTyped(KeyEvent e) {
-		
+	public void actionPerformed(ActionEvent e )
+	{
+		this.exitProgram();
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) 
+	{
 		char c = e.getKeyChar();
 		this.program.checkInput( c );
 	}
