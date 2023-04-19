@@ -16,7 +16,6 @@ public class TypingWindow extends JFrame implements KeyListener, ActionListener
 	private JLabel cpm;
 	private JLabel accuracy;
 	private JButton exit;
-	private JButton reset;
 	
 	private TypingPanel typyingPanel;
 	
