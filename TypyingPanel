@@ -38,19 +38,34 @@ public class TypingPanel extends JPanel {
 		
 		int text_spacing = 5;
 		int text_h = fm.getHeight();
-		int x_pos = 5;
+		int x_pos = 15;
 		int y_pos = text_h;
+		int y_spacing = 5;
+		int width = this.getWidth();
+		int word_width = 0;
+		String word = "";
 		
 		for (int i = 0; i < this.typyingText.getLength(); i++)
 		{
 			char character = this.typyingText.getTypyingTextCharAt(i);
+			
+			if (character == ' ')
+			{
+				word = "";
+			}
+			word += character;
+			word_width = fm.stringWidth(word);			
 			if ( this.typyingText.isCharCorrect( i ) )
 				g.setColor( this.correctColor );
 			else 
 				g.setColor( this.normalColor );
-			g.drawString( "" + character, x_pos, y_pos );
-			
 			int char_w = fm.stringWidth( "" + character );
+			if(x_pos + word_width >= width-190 && word.equals(" "))
+			{	
+				x_pos = 5;
+				y_pos += text_h + y_spacing;
+			}
+			g.drawString( "" + character, x_pos, y_pos );
 			x_pos += char_w + text_spacing;
 		}
 	}
