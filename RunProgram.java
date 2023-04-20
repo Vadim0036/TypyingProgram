@@ -7,9 +7,3 @@ public class RunProgram {
 		myProgram.runProgram();	
 	}	
 }
-
-/*
-		List what to do: 
-		3.) Set borders for text
-		4.) Add more text 
-*/
