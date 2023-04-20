@@ -110,12 +110,13 @@ public class TypingWindow extends JFrame implements KeyListener, ActionListener
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// TODO 
+		// Skip
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		//TODO
+		// Skip
 	}
 }
-
