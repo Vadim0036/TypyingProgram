@@ -2,7 +2,6 @@ import java.util.Random;
 
 public class Text 
 {
-
 	private Random random;
 	private String typyingText;
 	private String usersInput;
@@ -33,7 +32,6 @@ public class Text
 	
 	public int getLength()
 	{
-	
 		return this.typyingText.length();
 	}
 	
@@ -72,7 +70,7 @@ public class Text
 	
 	private void setTypyingText()
 	{
-		for(int i = 0; i < 2; i++) 
+		for(int i = 0; i < 11; i++) 
 		{
 			this.typyingText = this.typyingText + getRandomWord() + " ";
 		}
